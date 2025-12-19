@@ -1,1 +1,31 @@
-key:value
+# ==========================================
+# PREPARE BASE MODEL PARAMS (Architecture)
+# ==========================================
+IMAGE_SIZE: [224, 224, 3]
+WEIGHTS: imagenet
+INCLUDE_TOP: False
+POOLING: avg
+CLASSES: 4
+LEARNING_RATE: 0.01
+
+# ==========================================
+# TRAINING PARAMS (Separated by Model)
+# ==========================================
+# You can give each model different settings if they train differently!
+
+DenseNet121:
+  
+  EPOCHS: 20
+  BATCH_SIZE: 16
+  AUGMENTATION: True
+
+ResNet50:
+  
+  EPOCHS: 25
+  BATCH_SIZE: 16
+  AUGMENTATION: True
+
+EfficientNetB0:
+  EPOCHS: 30
+  BATCH_SIZE: 32
+  AUGMENTATION: True

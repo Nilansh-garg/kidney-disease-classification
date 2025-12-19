@@ -2,6 +2,26 @@ artifacts_root: artifacts
 
 data_ingestion:
   root_dir: artifacts/data_ingestion
-  source_URL: https://example.com/data.zip
+  source_URL: 1_wHDPchQbw4-huJUvVadvM9BW5y-KZ8u
   local_data_file: artifacts/data_ingestion/data.zip
   unzipped_data_dir: artifacts/data_ingestion
+
+prepare_base_model:
+  root_dir: artifacts/prepare_base_model
+  
+  densenet121:
+    dir: artifacts/prepare_base_model/densenet121
+    raw_path: artifacts/prepare_base_model/densenet121/raw.h5
+    updated_path: artifacts/prepare_base_model/densenet121/final.h5
+
+  resnet50:
+    dir: artifacts/prepare_base_model/resnet50
+    raw_path: artifacts/prepare_base_model/resnet50/raw.h5
+    updated_path: artifacts/prepare_base_model/resnet50/final.h5
+
+  efficientnetb0:
+    dir: artifacts/prepare_base_model/efficientnetb0
+    raw_path: artifacts/prepare_base_model/efficientnetb0/raw.h5
+    updated_path: artifacts/prepare_base_model/efficientnetb0/final.h5
+  
+  
