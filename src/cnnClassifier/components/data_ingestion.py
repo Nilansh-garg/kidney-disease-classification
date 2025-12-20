@@ -1,6 +1,7 @@
 import zipfile
 import gdown
 import os
+from pathlib import Path
 from cnnClassifier import logger
 from cnnClassifier.utils.common import get_size
 from cnnClassifier.entity.config_entity import DataIngestionConfig
@@ -18,10 +19,9 @@ class DataIngestion:
             logger.info(f"downloading data from {dataset_url} into file {zip_download_dir}")
             
             file_id = dataset_url.split('/')[-2]
-            prefix = 'https://drive.google.com/export=download&id='
-            gdown.download(id=prefix +file_id, output=zip_download_dir)
-            
-            logger.info(f"file downloaded successfully and saved at {zip_download_dir} with size {get_size(zip_download_dir)}")
+            gdown.download(id=file_id, output=zip_download_dir)
+
+            logger.info(f"file downloaded successfully and saved at {zip_download_dir} with size {get_size(Path(zip_download_dir))}")
             return zip_download_dir
         except Exception as e:
             raise e
