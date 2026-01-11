@@ -8,7 +8,7 @@ data_ingestion:
 
 prepare_base_model:
   root_dir: artifacts/prepare_base_model
-  
+
   densenet121:
     dir: artifacts/prepare_base_model/densenet121
     raw_path: artifacts/prepare_base_model/densenet121/raw.h5
@@ -23,5 +23,20 @@ prepare_base_model:
     dir: artifacts/prepare_base_model/efficientnetb0
     raw_path: artifacts/prepare_base_model/efficientnetb0/raw.h5
     updated_path: artifacts/prepare_base_model/efficientnetb0/final.h5
+  
+# Add this section to your existing config.yaml
+training:
+  root_dir: artifacts/training
+  
+  densenet121:
+    trained_model_path: artifacts/training/densenet121/model.h5
+
+  resnet50:
+    trained_model_path: artifacts/training/resnet50/model.h5
+
+  efficientnetb0:
+    trained_model_path: artifacts/training/efficientnetb0/model.h5
+
+  ensemble_results: artifacts/training/ensemble_evaluation.json
   
   
