@@ -1,0 +1,12 @@
+Metadata-Version: 2.1
+Name: cnn_classifier
+Version: 0.0.1
+Summary: A machine learning project for classifying kidney diseases using CNN, MLFlow, and DVC.
+Home-page: http://github.com/Nilansh Garg/Kidney_Disease_classification_MLFlow-DVC
+Author: Nilansh Garg
+Author-email: nilanshgarg13@gmail.com
+Project-URL: Bug Tracker, https://github.com/Nilansh Garg/Kidney_Disease_classification_MLFlow-DVC/issues
+Description-Content-Type: text/markdown
+
+# kidney-classification
+This is a project to identify that which person has which kind of kidney disease

@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>About | KidneyHealth AI</title>
+    <link rel="stylesheet" href="static/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="/" class="nav-brand">
+                <i class="fas fa-kidneys"></i>
+                <span>Kidney<em>Health</em> AI</span>
+            </a>
+            <ul class="nav-menu">
+                <li><a href="/">Home</a></li>
+                <li><a href="/classify">Classify</a></li>
+                <li><a href="/about" class="active">About</a></li>
+                <li><a href="/contact">Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- About Hero -->
+    <section class="about-hero">
+        <div class="container">
+            <span class="section-label" style="color:var(--accent);display:block;margin-bottom:1rem;">Our Story & Mission</span>
+            <h1>About KidneyHealth AI</h1>
+            <p>Revolutionizing kidney disease diagnostics through the power of artificial intelligence and deep learning</p>
+        </div>
+    </section>
+
+    <!-- Mission -->
+    <section class="mission-section">
+        <div class="container">
+            <div class="mission-grid">
+                <div class="mission-content">
+                    <span class="section-label">Our Mission</span>
+                    <h2>AI-Powered Diagnostics for Better Outcomes</h2>
+                    <p>KidneyHealth AI is an advanced medical imaging system built to assist clinicians, nephrologists, and radiologists in detecting kidney conditions from CT scan images using deep learning technology.</p>
+                    <p>Our mission is to bridge the gap between cutting-edge AI research and real-world clinical application — providing faster, more accessible preliminary diagnostics that support medical decision-making in resource-constrained environments.</p>
+                    <p>By automating the classification of Cyst, Stone, Tumor, and Normal kidney states, we aim to help reduce diagnostic delay and support early intervention that saves lives.</p>
+                </div>
+                <div class="mission-image">
+                    <div class="icon-showcase">
+                        <i class="fas fa-kidneys"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technology -->
+    <section class="technology-section">
+        <div class="container">
+            <span class="section-label" style="display:block;text-align:center;">The Science</span>
+            <h2 class="section-title">Technology Behind the System</h2>
+            <p class="section-subtitle">Built on proven deep learning architectures with medical imaging best practices.</p>
+            <div class="tech-grid">
+                <div class="tech-card">
+                    <div class="tech-icon"><i class="fas fa-brain"></i></div>
+                    <h3>VGG16 Transfer Learning</h3>
+                    <p>Our classifier is built on the VGG16 architecture pretrained on ImageNet, fine-tuned on a curated kidney CT dataset for domain-specific feature extraction.</p>
+                </div>
+                <div class="tech-card">
+                    <div class="tech-icon"><i class="fas fa-database"></i></div>
+                    <h3>Curated Medical Dataset</h3>
+                    <p>Trained on 12,000+ annotated CT images across four classes, with balanced augmentation pipelines to prevent class bias and improve generalization.</p>
+                </div>
+                <div class="tech-card">
+                    <div class="tech-icon"><i class="fas fa-server"></i></div>
+                    <h3>Flask REST API</h3>
+                    <p>The inference engine is exposed via a Flask REST API with CORS support, accepting base64-encoded images and returning structured JSON predictions.</p>
+                </div>
+                <div class="tech-card">
+                    <div class="tech-icon"><i class="fas fa-lock"></i></div>
+                    <h3>Secure Pipeline</h3>
+                    <p>All image data is processed ephemerally — decoded, analyzed, and discarded. No patient data is retained, aligning with clinical data privacy requirements.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Detailed Workflow -->
+    <section class="detailed-workflow">
+        <div class="container">
+            <span class="section-label" style="display:block;text-align:center;">Pipeline</span>
+            <h2 class="section-title">Detailed Workflow</h2>
+            <p class="section-subtitle">From image upload to classification — a transparent look at every step.</p>
+            <div class="workflow-timeline">
+                <div class="timeline-item">
+                    <div class="timeline-marker">1</div>
+                    <div class="timeline-content">
+                        <h3>CT Image Acquisition</h3>
+                        <p>Users upload an axial kidney CT scan image (JPG, PNG, JPEG) via the web interface. The system validates format and size before proceeding.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-marker">2</div>
+                    <div class="timeline-content">
+                        <h3>Base64 Encoding & Transmission</h3>
+                        <p>The image is encoded to base64 in the browser and sent securely to the Flask backend via a POST request to the <code>/predict</code> endpoint.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-marker">3</div>
+                    <div class="timeline-content">
+                        <h3>Preprocessing</h3>
+                        <p>The decoded image is resized to 224×224 pixels, converted to an array, and normalized (pixel values scaled to [0,1]) to match the model's expected input format.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-marker">4</div>
+                    <div class="timeline-content">
+                        <h3>CNN Inference</h3>
+                        <p>The preprocessed tensor passes through the loaded VGG16-based model (<code>model.h5</code>), producing a probability vector across all four kidney classes.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-marker">5</div>
+                    <div class="timeline-content">
+                        <h3>Classification & Confidence</h3>
+                        <p><code>argmax</code> determines the predicted class, and <code>max(raw_prediction)</code> provides the confidence score. Results are mapped to human-readable labels.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-marker">6</div>
+                    <div class="timeline-content">
+                        <h3>JSON Response & UI Display</h3>
+                        <p>The prediction is returned as a structured JSON object <code>[{"class": "...", "confidence": 0.XX}]</code> and rendered dynamically on the classify page.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits -->
+    <section class="benefits-section">
+        <div class="container">
+            <span class="section-label" style="display:block;text-align:center;">Advantages</span>
+            <h2 class="section-title">Key Benefits</h2>
+            <p class="section-subtitle">Why KidneyHealth AI makes a difference in clinical and research settings.</p>
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <i class="fas fa-clock"></i>
+                    <h3>Sub-3-Second Results</h3>
+                    <p>Near-instantaneous predictions versus days of waiting for traditional lab pathology reports.</p>
+                </div>
+                <div class="benefit-card">
+                    <i class="fas fa-coins"></i>
+                    <h3>Cost Reduction</h3>
+                    <p>Reduces dependency on expensive imaging specialists for preliminary triage and screening.</p>
+                </div>
+                <div class="benefit-card">
+                    <i class="fas fa-globe"></i>
+                    <h3>Remote Accessibility</h3>
+                    <p>Any clinician with internet access can run diagnostics from rural clinics or remote areas.</p>
+                </div>
+                <div class="benefit-card">
+                    <i class="fas fa-chart-line"></i>
+                    <h3>Consistent Performance</h3>
+                    <p>AI doesn't suffer from fatigue or subjective bias — consistent accuracy every single run.</p>
+                </div>
+                <div class="benefit-card">
+                    <i class="fas fa-user-md"></i>
+                    <h3>Clinician Support</h3>
+                    <p>Designed to assist, not replace, medical professionals — a second opinion at scale.</p>
+                </div>
+                <div class="benefit-card">
+                    <i class="fas fa-flask"></i>
+                    <h3>Research Ready</h3>
+                    <p>Open architecture supports integration with hospital systems, research datasets, and clinical trials.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Use Cases -->
+    <section class="use-cases">
+        <div class="container">
+            <span class="section-label" style="display:block;text-align:center;">Applications</span>
+            <h2 class="section-title">Who Can Benefit</h2>
+            <p class="section-subtitle">KidneyHealth AI is designed for a broad range of medical and research applications.</p>
+            <div class="use-cases-grid">
+                <div class="use-case-card">
+                    <div class="use-case-icon"><i class="fas fa-hospital"></i></div>
+                    <h3>Hospitals & Clinics</h3>
+                    <p>Enable rapid preliminary screening for nephrology departments and radiology units handling large volumes of CT scans.</p>
+                </div>
+                <div class="use-case-card">
+                    <div class="use-case-icon"><i class="fas fa-stethoscope"></i></div>
+                    <h3>Nephrologists & Urologists</h3>
+                    <p>AI-assisted second opinion for ambiguous cases, reducing diagnostic uncertainty and speeding up care pathways.</p>
+                </div>
+                <div class="use-case-card">
+                    <div class="use-case-icon"><i class="fas fa-graduation-cap"></i></div>
+                    <h3>Medical Education</h3>
+                    <p>Training tool for medical students to learn about kidney pathology through interactive AI-assisted case studies.</p>
+                </div>
+                <div class="use-case-card">
+                    <div class="use-case-icon"><i class="fas fa-microscope"></i></div>
+                    <h3>Research Institutions</h3>
+                    <p>Integrate the prediction API into clinical research pipelines for large-scale epidemiological kidney studies.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team -->
+    <section class="team-section">
+        <div class="container">
+            <span class="section-label" style="display:block;text-align:center;">The People</span>
+            <h2 class="section-title">Our Team</h2>
+            <div class="team-grid">
+                <div class="team-card">
+                    <div class="team-avatar"><i class="fas fa-user-graduate"></i></div>
+                    <h3>Nilansh Garg</h3>
+                    <p class="team-role">Lead Developer & Author</p>
+                    <p class="team-bio">Machine Learning Engineer with expertise in medical imaging, transfer learning, and production AI systems. Passionate about applying deep learning to solve real clinical challenges.</p>
+                    <div class="team-social">
+                        <a href="#" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" title="GitHub"><i class="fab fa-github"></i></a>
+                        <a href="#" title="Email"><i class="fas fa-envelope"></i></a>
+                    </div>
+                </div>
+                <div class="team-card">
+                    <div class="team-avatar"><i class="fas fa-user-tie"></i></div>
+                    <h3>Krish Naik</h3>
+                    <p class="team-role">Project Supervisor</p>
+                    <p class="team-bio">Renowned AI educator and industry expert with decades of experience in data science and machine learning. Provides strategic oversight and mentorship for impactful AI projects.</p>
+                    <div class="team-social">
+                        <a href="#" title="YouTube"><i class="fab fa-youtube"></i></a>
+                        <a href="#" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technical Specifications -->
+    <section class="specs-section">
+        <div class="container">
+            <span class="section-label" style="display:block;text-align:center;">Technical Details</span>
+            <h2 class="section-title">Technical Specifications</h2>
+            <div class="specs-grid">
+                <div class="spec-item">
+                    <h4>Model Architecture</h4>
+                    <p>VGG16 backbone with custom fully-connected classification head, batch normalization, and dropout regularization</p>
+                </div>
+                <div class="spec-item">
+                    <h4>Training Dataset</h4>
+                    <p>12,000+ annotated kidney CT images across Cyst, Stone, Tumor, and Normal classes with stratified splits</p>
+                </div>
+                <div class="spec-item">
+                    <h4>Classification Classes</h4>
+                    <p>4 classes: Normal (0), Cyst (1), Stone (2), Tumor (3) — identified via <code>argmax</code> on softmax output</p>
+                </div>
+                <div class="spec-item">
+                    <h4>Input Format</h4>
+                    <p>224×224 RGB images, normalized to [0,1] range, batched with <code>np.expand_dims</code></p>
+                </div>
+                <div class="spec-item">
+                    <h4>Supported Formats</h4>
+                    <p>JPG, JPEG, PNG — with automatic resizing and format conversion via Keras preprocessing</p>
+                </div>
+                <div class="spec-item">
+                    <h4>API Framework</h4>
+                    <p>Flask REST API with Flask-CORS, JSON I/O, base64 image decoding, and structured error handling</p>
+                </div>
+                <div class="spec-item">
+                    <h4>Model File</h4>
+                    <p>Saved as <code>artifacts/training/model.h5</code>, loaded at app initialization via TensorFlow/Keras</p>
+                </div>
+                <div class="spec-item">
+                    <h4>Pipeline Orchestration</h4>
+                    <p>DVC-managed ML pipeline supporting reproducible training, evaluation, and deployment workflows</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta">
+        <div class="container">
+            <h2>Experience AI-Powered Kidney Diagnostics</h2>
+            <p>Try the classifier now — fast, free, and built on clinical-grade AI.</p>
+            <a href="/classify" class="btn btn-primary btn-large">
+                <i class="fas fa-microscope"></i> Classify a CT Scan
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-brand">
+                        <i class="fas fa-kidneys"></i> KidneyHealth AI
+                    </div>
+                    <p>Advanced kidney disease detection powered by deep learning.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/classify">Classify</a></li>
+                        <li><a href="/about">About</a></li>
+                        <li><a href="/contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <div class="contact-line"><i class="fas fa-envelope"></i> info@kidneyhealthai.com</div>
+                    <div class="contact-line"><i class="fas fa-phone"></i> +91 123 456 7890</div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 KidneyHealth AI. All rights reserved. | Developed by Nilansh Garg</p>
+                <p>Supervised by Krish Naik</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="static/js/main.js"></script>
+</body>
+</html>

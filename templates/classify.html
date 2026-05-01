@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Classify | KidneyHealth AI</title>
+    <link rel="stylesheet" href="static/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="/" class="nav-brand">
+                <i class="fas fa-kidneys"></i>
+                <span>Kidney<em>Health</em> AI</span>
+            </a>
+            <ul class="nav-menu">
+                <li><a href="/">Home</a></li>
+                <li><a href="/classify" class="active">Classify</a></li>
+                <li><a href="/about">About</a></li>
+                <li><a href="/contact">Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Classification Section -->
+    <section class="classification-section">
+        <div class="container">
+            <div class="page-header">
+                <span class="section-label">AI Diagnosis Tool</span>
+                <h1 class="page-title">Kidney CT Scan Classification</h1>
+                <p class="page-subtitle">Upload a kidney CT scan image for instant AI-powered analysis — Cyst, Stone, Tumor, or Normal</p>
+            </div>
+
+            <div class="classification-container">
+
+                <!-- Upload Section -->
+                <div class="upload-section">
+                    <div class="upload-card">
+                        <div class="image-preview" id="imagePreview">
+                            <video autoplay id="video" style="display:none;"></video>
+                            <img src="" id="photo" alt="Preview" style="display:none;">
+                            <canvas style="display:none;" id="canvas"></canvas>
+                            <div class="placeholder" id="placeholder">
+                                <i class="fas fa-cloud-upload-alt"></i>
+                                <p>Drop CT scan here or click to upload</p>
+                                <span>Supports: JPG, PNG, JPEG · Max 10MB</span>
+                            </div>
+                        </div>
+
+                        <div class="upload-actions">
+                            <button type="button" class="btn btn-outline" id="uploadBtn">
+                                <i class="fas fa-folder-open"></i> Choose File
+                            </button>
+                            <button type="button" class="btn btn-primary" id="predictBtn" disabled>
+                                <i class="fas fa-brain"></i> Analyze Scan
+                            </button>
+                            <input type="file" id="fileInput" accept="image/*" style="display:none;">
+                            <input type="hidden" id="url" value="/predict"/>
+                        </div>
+
+                        <div class="progress-container" id="progressContainer" style="display:none;">
+                            <div class="progress-bar">
+                                <div class="progress-fill" id="progressFill"></div>
+                            </div>
+                            <p class="progress-text"><i class="fas fa-spinner fa-spin"></i> Processing CT scan through neural network...</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Results Section -->
+                <div class="results-section">
+                    <div class="results-card">
+                        <h3 class="results-title">
+                            <i class="fas fa-chart-pie"></i> Analysis Results
+                        </h3>
+
+                        <div class="results-placeholder" id="resultsPlaceholder">
+                            <i class="fas fa-microscope"></i>
+                            <p>Upload a kidney CT scan image to see the AI diagnosis here</p>
+                        </div>
+
+                        <div class="results-content" id="resultsContent" style="display:none;">
+                            <div class="result-main" id="resultMain"></div>
+                            <div class="result-details" id="resultDetails"></div>
+                            <div class="result-image" id="resultImage"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Info Cards -->
+            <div class="info-cards">
+                <div class="info-card">
+                    <i class="fas fa-lightbulb"></i>
+                    <h4>Tips for Best Results</h4>
+                    <ul>
+                        <li>Use axial CT scan images</li>
+                        <li>Ensure the kidney is clearly visible</li>
+                        <li>Use high resolution images (min 224×224px)</li>
+                        <li>Avoid blurry or overexposed scans</li>
+                        <li>Grayscale or contrast-enhanced images work best</li>
+                    </ul>
+                </div>
+                <div class="info-card">
+                    <i class="fas fa-shield-alt"></i>
+                    <h4>Privacy & Security</h4>
+                    <ul>
+                        <li>Images processed locally on-server</li>
+                        <li>No data stored permanently</li>
+                        <li>Encrypted transmission (HTTPS)</li>
+                        <li>HIPAA-aligned data handling</li>
+                        <li>No third-party data sharing</li>
+                    </ul>
+                </div>
+                <div class="info-card">
+                    <i class="fas fa-info-circle"></i>
+                    <h4>Classification Classes</h4>
+                    <ul>
+                        <li>Normal — healthy kidney</li>
+                        <li>Cyst — fluid-filled sac</li>
+                        <li>Stone — mineral deposits</li>
+                        <li>Tumor — abnormal growth</li>
+                    </ul>
+                    <p style="margin-top:0.75rem;font-size:0.8rem;color:var(--text-light);">
+                        <i class="fas fa-exclamation-circle" style="color:var(--warning);"></i>
+                        Always consult a qualified nephrologist or radiologist before making any medical decisions.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Loading Overlay -->
+    <div id="loading" style="display:none;">
+        <div class="loader-wrapper">
+            <div class="loader"></div>
+            <p>Analyzing CT scan...</p>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-brand">
+                        <i class="fas fa-kidneys"></i>
+                        KidneyHealth AI
+                    </div>
+                    <p>Advanced kidney disease detection powered by deep learning and computer vision.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/classify">Classify</a></li>
+                        <li><a href="/about">About</a></li>
+                        <li><a href="/contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <div class="contact-line"><i class="fas fa-envelope"></i> info@kidneyhealthai.com</div>
+                    <div class="contact-line"><i class="fas fa-phone"></i> +91 123 456 7890</div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 KidneyHealth AI. All rights reserved. | Developed by Nilansh Garg</p>
+                <p>Supervised by Krish Naik</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="static/js/classify.js"></script>
+    <script src="static/js/main.js"></script>
+</body>
+</html>

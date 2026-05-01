@@ -1,0 +1,26 @@
+cmd: python src/cnnClassifier/pipeline/stage_02_prepare_model.py
+deps:
+- path: config/config.yaml
+  hash: md5
+  md5: dd2c4bcacb0f7460c4ea89e7bcd838ea
+  size: 644
+- path: src/cnnClassifier/pipeline/stage_02_prepare_model.py
+  hash: md5
+  md5: 9441833264fe57049687d1df335f458b
+  size: 1061
+params:
+  params.yaml:
+    CLASSES: 2
+    IMAGE_SIZE:
+    - 224
+    - 224
+    - 3
+    INCLUDE_TOP: false
+    LEARNING_RATE: 0.01
+    WEIGHTS: imagenet
+outs:
+- path: artifacts/prepare_base_model
+  hash: md5
+  md5: 0906f879628e84da2d8019604bfe63a2.dir
+  size: 118073624
+  nfiles: 2

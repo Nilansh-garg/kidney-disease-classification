@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>KidneyHealth AI | AI-Powered Kidney Disease Detection</title>
+    <link rel="stylesheet" href="static/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="/" class="nav-brand">
+                <i class="fas fa-kidneys"></i>
+                <span>Kidney<em>Health</em> AI</span>
+            </a>
+            <ul class="nav-menu">
+                <li><a href="/" class="active">Home</a></li>
+                <li><a href="/classify">Classify</a></li>
+                <li><a href="/about">About</a></li>
+                <li><a href="/contact">Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container" style="display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;width:100%;">
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <i class="fas fa-shield-alt"></i> Deep Learning · Medical AI
+                </div>
+                <h1 class="hero-title">
+                    Early Kidney Disease <span>Detection</span> Powered by AI
+                </h1>
+                <p class="hero-subtitle">
+                    Upload a CT scan and let our trained convolutional neural network instantly classify kidney conditions — Cyst, Stone, Tumor, or Normal.
+                </p>
+                <div class="hero-buttons">
+                    <a href="/classify" class="btn btn-primary">
+                        <i class="fas fa-upload"></i> Start Classification
+                    </a>
+                    <a href="/about" class="btn btn-secondary">
+                        <i class="fas fa-book-open"></i> Learn More
+                    </a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="floating-card">
+                    <i class="fas fa-brain"></i>
+                    <p>Deep Learning CNN</p>
+                </div>
+                <div class="floating-card" style="animation-delay:0.6s;">
+                    <i class="fas fa-crosshairs"></i>
+                    <p>High Accuracy</p>
+                </div>
+                <div class="floating-card" style="animation-delay:1.2s;">
+                    <i class="fas fa-clock"></i>
+                    <p>Real-time Results</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features -->
+    <section class="features">
+        <div class="container">
+            <div class="features-header">
+                <span class="section-label">Why Choose Us</span>
+                <h2 class="section-title">Built for Accuracy & Speed</h2>
+                <p class="section-subtitle">Our system combines state-of-the-art deep learning with clinical-grade precision to support kidney disease diagnostics.</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-bolt"></i></div>
+                    <h3>Instant Results</h3>
+                    <p>Get classification results in under 3 seconds using our optimized CNN inference pipeline.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-bullseye"></i></div>
+                    <h3>4-Class Detection</h3>
+                    <p>Accurately identifies Cyst, Kidney Stone, Tumor, and Normal conditions from CT images.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-mobile-alt"></i></div>
+                    <h3>Any Device</h3>
+                    <p>Fully responsive interface works seamlessly on desktop, tablet, and mobile.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-chart-bar"></i></div>
+                    <h3>Confidence Scores</h3>
+                    <p>Every prediction comes with a probability confidence score for transparent diagnostics.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="how-it-works">
+        <div class="container">
+            <span class="section-label" style="display:block;text-align:center;">Process</span>
+            <h2 class="section-title">How It Works</h2>
+            <p class="section-subtitle">Three simple steps from image upload to actionable results.</p>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3>Upload CT Scan</h3>
+                        <p>Select or drag & drop your kidney CT scan image (JPG, PNG, JPEG)</p>
+                    </div>
+                </div>
+                <div class="step-arrow"><i class="fas fa-arrow-right"></i></div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3>AI Analysis</h3>
+                        <p>Our VGG16-based CNN processes the image through deep feature extraction</p>
+                    </div>
+                </div>
+                <div class="step-arrow"><i class="fas fa-arrow-right"></i></div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3>Get Diagnosis</h3>
+                        <p>Receive detailed classification with confidence score and recommendations</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats -->
+    <section class="stats">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number" data-target="12000">0</div>
+                    <div class="stat-label">CT Images Trained On</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" data-target="95.4" data-decimal="true">0</div>
+                    <div class="stat-label">Accuracy %</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" data-target="4">0</div>
+                    <div class="stat-label">Disease Classes</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" data-target="24">0</div>
+                    <div class="stat-label">Hours Availability</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Disease Classes Info -->
+    <section style="padding:6rem 0;background:var(--light);">
+        <div class="container">
+            <span class="section-label" style="display:block;text-align:center;">Detection Classes</span>
+            <h2 class="section-title">What We Detect</h2>
+            <p class="section-subtitle">Our model is trained to differentiate between four critical kidney conditions with clinical-level accuracy.</p>
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1.5rem;">
+                <div class="feature-card" style="border-top:3px solid #22c55e;">
+                    <div class="feature-icon" style="background:linear-gradient(135deg,#16a34a,#22c55e);"><i class="fas fa-check-circle"></i></div>
+                    <h3>Normal</h3>
+                    <p>Healthy kidney tissue with no signs of pathological conditions. No intervention required.</p>
+                </div>
+                <div class="feature-card" style="border-top:3px solid #3b82f6;">
+                    <div class="feature-icon" style="background:linear-gradient(135deg,#2563eb,#3b82f6);"><i class="fas fa-circle-notch"></i></div>
+                    <h3>Cyst</h3>
+                    <p>Fluid-filled sacs on or in the kidney. Usually benign but may require monitoring or treatment.</p>
+                </div>
+                <div class="feature-card" style="border-top:3px solid #f59e0b;">
+                    <div class="feature-icon" style="background:linear-gradient(135deg,#d97706,#f59e0b);"><i class="fas fa-gem"></i></div>
+                    <h3>Stone</h3>
+                    <p>Hard mineral deposits formed inside the kidney. Can cause pain and urinary complications.</p>
+                </div>
+                <div class="feature-card" style="border-top:3px solid #ef4444;">
+                    <div class="feature-icon" style="background:linear-gradient(135deg,#dc2626,#ef4444);"><i class="fas fa-exclamation-triangle"></i></div>
+                    <h3>Tumor</h3>
+                    <p>Abnormal tissue growths that may be benign or malignant. Requires immediate medical attention.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta">
+        <div class="container">
+            <h2>Ready to Analyze Your Scan?</h2>
+            <p>Upload a kidney CT image and get an AI-powered diagnosis in seconds.</p>
+            <a href="/classify" class="btn btn-primary btn-large">
+                <i class="fas fa-microscope"></i> Start Now — It's Free
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-brand">
+                        <i class="fas fa-kidneys"></i>
+                        KidneyHealth AI
+                    </div>
+                    <p>Advanced kidney disease detection powered by deep learning and computer vision.</p>
+                    <p style="margin-top:0.75rem;font-size:0.8rem;color:rgba(255,255,255,0.35);">For research purposes only. Always consult a qualified medical professional.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/classify">Classify</a></li>
+                        <li><a href="/about">About</a></li>
+                        <li><a href="/contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <div class="contact-line"><i class="fas fa-envelope"></i> info@kidneyhealthai.com</div>
+                    <div class="contact-line"><i class="fas fa-phone"></i> +91 123 456 7890</div>
+                    <div class="contact-line"><i class="fas fa-map-marker-alt"></i> Bangalore, Karnataka, India</div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 KidneyHealth AI. All rights reserved. | Developed by Nilansh Garg</p>
+                <p>Supervised by Krish Naik</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="static/js/main.js"></script>
+</body>
+</html>

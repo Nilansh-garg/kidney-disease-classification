@@ -1,0 +1,233 @@
+[2026-04-03 15:49:00,401: INFO: main: Running]
+[2026-04-03 15:49:41,440: INFO: main: Welcome to the project]
+[2026-04-04 11:36:21,093: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2026-04-04 11:36:21,116: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-04-04 11:36:21,127: INFO: common: created directory at : artifacts]
+[2026-04-04 11:36:21,130: INFO: common: created directory at : artifacts/prepare_base_model]
+[2026-04-04 11:36:21,135: INFO: 1109691473: Downloading base model]
+[2026-04-04 11:36:24,378: INFO: 1109691473: Saving base model]
+[2026-04-04 11:36:24,384: WARNING: saving_utils: Compiled the loaded model, but the compiled metrics have yet to be built. `model.compile_metrics` will be empty until you train or evaluate the model.]
+[2026-04-06 06:27:04,011: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2026-04-06 06:27:04,064: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-04-06 06:27:04,072: INFO: common: created directory at : artifacts]
+[2026-04-06 06:27:32,341: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2026-04-06 06:27:32,415: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-04-06 06:27:32,420: INFO: common: created directory at : artifacts]
+[2026-04-06 06:28:29,085: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2026-04-06 06:28:29,096: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-04-06 06:28:29,100: INFO: common: created directory at : artifacts]
+[2026-04-06 06:28:29,110: INFO: common: created directory at : artifacts/data_ingestion]
+[2026-04-06 06:28:29,115: INFO: 2222662554: downloading data from https://drive.google.com/file/d/1vlhZ5c7abUKF8xXERIw6m9Te8fW7ohw3/view?usp=sharing into file artifacts/data_ingestion/data.zip]
+[2026-04-06 06:28:50,559: INFO: 2222662554: file downloaded successfully and saved at artifacts/data_ingestion/data.zip with size ~ 56361 KB]
+[2026-04-06 06:28:50,565: INFO: 2222662554: extraction of file: artifacts/data_ingestion/data.zip started]
+[2026-04-06 06:28:54,039: INFO: 2222662554: extraction completed successfully at location: artifacts/data_ingestion]
+[2026-04-06 06:31:19,961: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2026-04-06 06:31:19,977: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-04-06 06:31:19,985: INFO: common: created directory at : artifacts]
+[2026-04-06 06:34:51,113: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2026-04-06 06:34:51,166: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-04-06 06:34:51,193: INFO: common: created directory at : artifacts]
+[2026-04-06 06:36:13,507: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2026-04-06 06:36:13,558: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-04-06 06:36:13,581: INFO: common: created directory at : artifacts]
+[2026-04-06 06:36:13,673: INFO: common: created directory at : artifacts\training]
+[2026-04-06 06:39:20,414: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2026-04-06 06:39:20,434: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-04-06 06:39:20,449: INFO: common: created directory at : artifacts]
+[2026-04-06 06:39:20,453: INFO: common: created directory at : artifacts\training]
+[2026-04-06 06:49:40,183: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2026-04-06 06:49:40,223: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-04-06 06:49:40,240: INFO: common: created directory at : artifacts]
+[2026-04-06 06:49:40,262: INFO: common: created directory at : artifacts\training]
+[2026-04-06 01:52:51,871: INFO: utils: NumExpr defaulting to 2 threads.]
+[2026-04-06 01:54:28,698: INFO: utils: NumExpr defaulting to 2 threads.]
+[2026-04-06 02:02:21,835: INFO: stage_01_data_ingestion: >>>>>>>>>>>>stage DATA INGESTION STAGE started<<<<<<<<<<<<]
+[2026-04-06 02:02:21,836: INFO: common: yaml file: config/config.yaml loaded successfully]
+[2026-04-06 02:02:21,838: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-04-06 02:02:21,838: INFO: common: created directory at : artifacts]
+[2026-04-06 02:02:21,839: INFO: common: created directory at : artifacts/data_ingestion]
+[2026-04-06 02:02:21,839: ERROR: stage_01_data_ingestion: name 'os' is not defined]
+Traceback (most recent call last):
+  File "/content/kidney-classification/src/cnnClassifier/pipeline/stage_01_data_ingestion.py", line 26, in <module>
+    obj.main()
+  File "/content/kidney-classification/src/cnnClassifier/pipeline/stage_01_data_ingestion.py", line 20, in main
+    raise e
+  File "/content/kidney-classification/src/cnnClassifier/pipeline/stage_01_data_ingestion.py", line 17, in main
+    zip_file_path = data_ingestion.download_file()
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/content/kidney-classification/src/cnnClassifier/components/data_ingestion.py", line 24, in download_file
+    raise e
+  File "/content/kidney-classification/src/cnnClassifier/components/data_ingestion.py", line 15, in download_file
+    os.makedirs(self.config.root_dir, exist_ok = True)
+    ^^
+NameError: name 'os' is not defined. Did you forget to import 'os'
+[2026-04-06 02:04:29,480: INFO: stage_01_data_ingestion: >>>>>>>>>>>>stage DATA INGESTION STAGE started<<<<<<<<<<<<]
+[2026-04-06 02:04:29,482: INFO: common: yaml file: config/config.yaml loaded successfully]
+[2026-04-06 02:04:29,483: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-04-06 02:04:29,483: INFO: common: created directory at : artifacts]
+[2026-04-06 02:04:29,483: INFO: common: created directory at : artifacts/data_ingestion]
+[2026-04-06 02:04:29,483: INFO: data_ingestion: downloading data from https://drive.google.com/file/d/1vlhZ5c7abUKF8xXERIw6m9Te8fW7ohw3/view?usp=sharing into file artifacts/data_ingestion/data.zip]
+[2026-04-06 02:04:31,481: ERROR: stage_01_data_ingestion: name 'Path' is not defined]
+Traceback (most recent call last):
+  File "/content/kidney-classification/src/cnnClassifier/pipeline/stage_01_data_ingestion.py", line 27, in <module>
+    obj.main()
+  File "/content/kidney-classification/src/cnnClassifier/pipeline/stage_01_data_ingestion.py", line 21, in main
+    raise e
+  File "/content/kidney-classification/src/cnnClassifier/pipeline/stage_01_data_ingestion.py", line 18, in main
+    zip_file_path = data_ingestion.download_file()
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/content/kidney-classification/src/cnnClassifier/components/data_ingestion.py", line 25, in download_file
+    raise e
+  File "/content/kidney-classification/src/cnnClassifier/components/data_ingestion.py", line 21, in download_file
+    size = get_size(Path(zip_download_dir))
+                    ^^^^
+NameError: name 'Path' is not defined
+[2026-04-06 02:05:41,482: INFO: stage_01_data_ingestion: >>>>>>>>>>>>stage DATA INGESTION STAGE started<<<<<<<<<<<<]
+[2026-04-06 02:05:41,484: INFO: common: yaml file: config/config.yaml loaded successfully]
+[2026-04-06 02:05:41,485: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-04-06 02:05:41,485: INFO: common: created directory at : artifacts]
+[2026-04-06 02:05:41,485: INFO: common: created directory at : artifacts/data_ingestion]
+[2026-04-06 02:05:41,485: INFO: data_ingestion: downloading data from https://drive.google.com/file/d/1vlhZ5c7abUKF8xXERIw6m9Te8fW7ohw3/view?usp=sharing into file artifacts/data_ingestion/data.zip]
+[2026-04-06 02:05:43,462: INFO: data_ingestion: file downloaded successfully and saved at artifacts/data_ingestion/data.zip with size ~ 56361 KB]
+[2026-04-06 02:05:43,462: INFO: data_ingestion: extraction of file: artifacts/data_ingestion/data.zip started]
+[2026-04-06 02:05:43,916: INFO: data_ingestion: extraction completed successfully at location: artifacts/data_ingestion]
+[2026-04-06 02:05:43,916: INFO: stage_01_data_ingestion: >>>>>>>>>>>> stage DATA INGESTION STAGE completed <<<<<<<<<<<<
+
+x==========x]
+[2026-04-06 02:09:35,234: INFO: utils: NumExpr defaulting to 2 threads.]
+[2026-04-06 02:09:37,056: INFO: stage_02_prepare_model: *******************]
+[2026-04-06 02:09:37,056: INFO: stage_02_prepare_model: >>>>>> Stage: PREPARE BASE MODEL STAGE started <<<<<<]
+[2026-04-06 02:09:37,059: INFO: common: yaml file: config/config.yaml loaded successfully]
+[2026-04-06 02:09:37,061: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-04-06 02:09:37,061: INFO: common: created directory at : artifacts]
+[2026-04-06 02:09:37,062: INFO: common: created directory at : artifacts/prepare_base_model]
+[2026-04-06 02:09:37,062: INFO: prepare_model: Downloading base model]
+[2026-04-06 02:09:41,151: INFO: prepare_model: Saving base model]
+[2026-04-06 02:09:41,151: WARNING: saving_api: You are saving your model as an HDF5 file via `model.save()` or `keras.saving.save_model(model)`. This file format is considered legacy. We recommend using instead the native Keras format, e.g. `model.save('my_model.keras')` or `keras.saving.save_model(model, 'my_model.keras')`. ]
+[2026-04-06 02:09:41,342: WARNING: saving_api: You are saving your model as an HDF5 file via `model.save()` or `keras.saving.save_model(model)`. This file format is considered legacy. We recommend using instead the native Keras format, e.g. `model.save('my_model.keras')` or `keras.saving.save_model(model, 'my_model.keras')`. ]
+[2026-04-06 02:09:41,493: INFO: stage_02_prepare_model: >>>>>> Stage: PREPARE BASE MODEL STAGE completed <<<<<<
+
+x==========x]
+[2026-04-06 02:09:49,789: INFO: utils: NumExpr defaulting to 2 threads.]
+[2026-04-06 02:09:51,902: INFO: common: yaml file: config/config.yaml loaded successfully]
+[2026-04-06 02:09:51,904: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-04-06 02:09:51,904: INFO: common: created directory at : artifacts]
+[2026-04-06 02:09:51,904: INFO: common: created directory at : artifacts/training]
+[2026-04-06 02:09:51,904: INFO: stage_03_training_model: ********************************]
+[2026-04-06 02:09:51,905: INFO: stage_03_training_model: >>>>>>>>>> stage Training started <<<<<<<<<<<]
+[2026-04-06 02:09:51,905: INFO: stage_03_training_model: --- DEBUG: All input paths confirmed to exist! ---]
+[2026-04-06 02:09:54,165: WARNING: saving_utils: Compiled the loaded model, but the compiled metrics have yet to be built. `model.compile_metrics` will be empty until you train or evaluate the model.]
+[2026-04-06 02:09:54,189: ERROR: stage_03_training_model: 'ModelTrainingPipeline' object has no attribute 'callback_list']
+Traceback (most recent call last):
+  File "/content/kidney-classification/src/cnnClassifier/pipeline/stage_03_training_model.py", line 58, in <module>
+    obj.run()
+  File "/content/kidney-classification/src/cnnClassifier/pipeline/stage_03_training_model.py", line 38, in run
+    self.training.train(callback_list=self.callback_list)
+                                      ^^^^^^^^^^^^^^^^^^
+AttributeError: 'ModelTrainingPipeline' object has no attribute 'callback_list'
+[2026-04-06 02:15:05,802: INFO: utils: NumExpr defaulting to 2 threads.]
+[2026-04-06 02:15:07,983: INFO: common: yaml file: config/config.yaml loaded successfully]
+[2026-04-06 02:15:07,985: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-04-06 02:15:07,985: INFO: common: created directory at : artifacts]
+[2026-04-06 02:15:07,985: INFO: common: created directory at : artifacts/training]
+[2026-04-06 02:15:07,986: INFO: stage_03_training_model: ********************************]
+[2026-04-06 02:15:07,986: INFO: stage_03_training_model: >>>>>>>>>> stage Training started <<<<<<<<<<<]
+[2026-04-06 02:15:07,986: INFO: stage_03_training_model: --- DEBUG: All input paths confirmed to exist! ---]
+[2026-04-06 02:15:10,176: WARNING: saving_utils: Compiled the loaded model, but the compiled metrics have yet to be built. `model.compile_metrics` will be empty until you train or evaluate the model.]
+[2026-04-06 02:15:54,782: WARNING: saving_api: You are saving your model as an HDF5 file via `model.save()` or `keras.saving.save_model(model)`. This file format is considered legacy. We recommend using instead the native Keras format, e.g. `model.save('my_model.keras')` or `keras.saving.save_model(model, 'my_model.keras')`. ]
+[2026-04-06 02:15:54,880: INFO: stage_03_training_model: >>>>>>>>>> stage Training completed <<<<<<<<<<<]
+[2026-04-06 02:16:01,799: INFO: utils: NumExpr defaulting to 2 threads.]
+[2026-04-06 02:16:04,998: WARNING: saving_utils: Compiled the loaded model, but the compiled metrics have yet to be built. `model.compile_metrics` will be empty until you train or evaluate the model.]
+[2026-04-06 02:17:43,270: INFO: utils: NumExpr defaulting to 2 threads.]
+[2026-04-06 02:17:46,322: WARNING: saving_utils: Compiled the loaded model, but the compiled metrics have yet to be built. `model.compile_metrics` will be empty until you train or evaluate the model.]
+[2026-04-06 02:17:48,902: INFO: stage_04_model_evaluation: >>>>>>>>>>>>stage EVALUATION STAGE started<<<<<<<<<<<<]
+[2026-04-06 02:17:48,904: INFO: common: yaml file: config/config.yaml loaded successfully]
+[2026-04-06 02:17:48,905: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-04-06 02:17:48,905: INFO: common: created directory at : artifacts]
+[2026-04-06 02:17:49,092: WARNING: saving_utils: Compiled the loaded model, but the compiled metrics have yet to be built. `model.compile_metrics` will be empty until you train or evaluate the model.]
+[2026-04-06 02:17:49,097: ERROR: stage_04_model_evaluation: [Errno 2] No such file or directory: 'artifacts/data_ingestion/kidney-ct-scans-image']
+Traceback (most recent call last):
+  File "/content/kidney-classification/src/cnnClassifier/pipeline/stage_04_model_evaluation.py", line 27, in <module>
+    obj.main()
+  File "/content/kidney-classification/src/cnnClassifier/pipeline/stage_04_model_evaluation.py", line 16, in main
+    evaluation.evaluation()
+  File "/content/kidney-classification/src/cnnClassifier/components/model_evaluation_mlflow.py", line 45, in evaluation
+    self._valid_generator()
+  File "/content/kidney-classification/src/cnnClassifier/components/model_evaluation_mlflow.py", line 32, in _valid_generator
+    self.valid_generator = valid_datagenerator.flow_from_directory(
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/keras/src/legacy/preprocessing/image.py", line 1136, in flow_from_directory
+    return DirectoryIterator(
+           ^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/keras/src/legacy/preprocessing/image.py", line 456, in __init__
+    for subdir in sorted(os.listdir(directory)):
+                         ^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'artifacts/data_ingestion/kidney-ct-scans-image'
+[2026-04-06 02:25:51,103: INFO: utils: NumExpr defaulting to 2 threads.]
+[2026-04-06 02:25:55,152: WARNING: saving_utils: Compiled the loaded model, but the compiled metrics have yet to be built. `model.compile_metrics` will be empty until you train or evaluate the model.]
+[2026-04-06 02:25:56,493: INFO: stage_04_model_evaluation: >>>>>>>>>>>>stage EVALUATION STAGE started<<<<<<<<<<<<]
+[2026-04-06 02:25:56,495: INFO: common: yaml file: config/config.yaml loaded successfully]
+[2026-04-06 02:25:56,496: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-04-06 02:25:56,496: INFO: common: created directory at : artifacts]
+[2026-04-06 02:25:56,671: WARNING: saving_utils: Compiled the loaded model, but the compiled metrics have yet to be built. `model.compile_metrics` will be empty until you train or evaluate the model.]
+[2026-04-06 02:26:04,136: INFO: common: json file saved at:scores.json]
+[2026-04-06 02:26:04,523: ERROR: stage_04_model_evaluation: API request to endpoint /api/2.0/mlflow/experiments/create failed with error code 403 != 200. Response body: '']
+Traceback (most recent call last):
+  File "/content/kidney-classification/src/cnnClassifier/pipeline/stage_04_model_evaluation.py", line 27, in <module>
+    obj.main()
+  File "/content/kidney-classification/src/cnnClassifier/pipeline/stage_04_model_evaluation.py", line 18, in main
+    evaluation.log_into_mlflow()
+  File "/content/kidney-classification/src/cnnClassifier/components/model_evaluation_mlflow.py", line 59, in log_into_mlflow
+    mlflow.set_experiment("kidney-disease-classification")
+  File "/usr/local/lib/python3.12/dist-packages/mlflow/tracking/fluent.py", line 201, in set_experiment
+    experiment_id = client.create_experiment(experiment_name)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/mlflow/telemetry/track.py", line 30, in wrapper
+    result = func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/mlflow/tracking/_tracking_service/client.py", line 301, in create_experiment
+    return self.store.create_experiment(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/mlflow/store/tracking/rest_store.py", line 284, in create_experiment
+    response_proto = self._call_endpoint(CreateExperiment, req_body)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/mlflow/store/tracking/rest_store.py", line 233, in _call_endpoint
+    return call_endpoint(
+           ^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/mlflow/utils/rest_utils.py", line 627, in call_endpoint
+    response = verify_rest_response(
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/mlflow/utils/rest_utils.py", line 348, in verify_rest_response
+    raise MlflowException(
+mlflow.exceptions.MlflowException: API request to endpoint /api/2.0/mlflow/experiments/create failed with error code 403 != 200. Response body: ''
+[2026-04-06 02:38:52,537: INFO: utils: NumExpr defaulting to 2 threads.]
+[2026-04-06 02:38:56,217: WARNING: saving_utils: Compiled the loaded model, but the compiled metrics have yet to be built. `model.compile_metrics` will be empty until you train or evaluate the model.]
+[2026-04-06 02:38:58,298: INFO: stage_04_model_evaluation: >>>>>>>>>>>>stage EVALUATION STAGE started<<<<<<<<<<<<]
+[2026-04-06 02:38:58,301: INFO: common: yaml file: config/config.yaml loaded successfully]
+[2026-04-06 02:38:58,303: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-04-06 02:38:58,304: INFO: common: created directory at : artifacts]
+[2026-04-06 02:38:58,532: WARNING: saving_utils: Compiled the loaded model, but the compiled metrics have yet to be built. `model.compile_metrics` will be empty until you train or evaluate the model.]
+[2026-04-06 02:39:06,729: INFO: common: json file saved at:scores.json]
+[2026-04-06 02:39:31,995: INFO: stage_04_model_evaluation: >>>>>>>>>>>> stage EVALUATION STAGE completed <<<<<<<<<<<<
+
+x==========x]
+[2026-04-07 14:37:31,363: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2026-04-07 14:37:31,429: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-04-07 14:37:31,453: INFO: common: created directory at : artifacts]
+[2026-04-07 14:37:31,462: INFO: common: created directory at : artifacts/data_ingestion]
+[2026-04-07 14:37:31,469: INFO: 2222662554: downloading data from https://drive.google.com/uc?export=download&id=1h_kzbmX6H0b5QyRougNY-Dll3xS07q73 into file artifacts/data_ingestion/data.zip]
+[2026-04-07 14:39:34,133: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2026-04-07 14:39:34,180: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-04-07 14:39:34,214: INFO: common: created directory at : artifacts]
+[2026-04-07 14:39:34,283: INFO: common: created directory at : artifacts/data_ingestion]
+[2026-04-07 14:39:34,311: INFO: 2222662554: downloading data from https://drive.google.com/uc?id=1h_kzbmX6H0b5QyRougNY-Dll3xS07q73 into file artifacts/data_ingestion/data.zip]
+[2026-04-07 14:45:22,212: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2026-04-07 14:45:22,267: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-04-07 14:45:22,282: INFO: common: created directory at : artifacts]
+[2026-04-07 14:45:22,303: INFO: common: created directory at : artifacts/data_ingestion]
+[2026-04-07 14:45:22,315: INFO: 2222662554: downloading data from https://drive.google.com/file/d/1h_kzbmX6H0b5QyRougNY-Dll3xS07q73/view into file artifacts/data_ingestion/data.zip]
+[2026-04-07 15:38:44,347: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2026-04-07 15:38:44,394: INFO: common: yaml file: params.yaml loaded successfully]
+[2026-04-07 15:38:44,401: INFO: common: created directory at : artifacts]
+[2026-04-07 15:38:44,406: INFO: common: created directory at : artifacts/data_ingestion]
+[2026-04-07 15:38:44,410: INFO: 2222662554: downloading data from https://drive.google.com/file/d/1sDIbpWAoGYhgiwsd3AMiMMrrRJTUDR11/view into file artifacts/data_ingestion/data.zip]
