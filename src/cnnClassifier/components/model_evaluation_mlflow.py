@@ -43,21 +43,38 @@ class Evaluation:
     
     def evaluation(self):
         self.model = self.load_model(self.config.path_of_model)
+        
+        # ADD THIS — recompile with full metrics
+        self.model.compile(
+            optimizer="adam",
+            loss="binary_crossentropy",
+            metrics=[
+                "accuracy",
+                tf.keras.metrics.AUC(name="auc"),
+                tf.keras.metrics.Precision(name="precision"),
+                tf.keras.metrics.Recall(name="recall")
+            ]
+        )
+        
         self._valid_generator()
         self.score = self.model.evaluate(self.valid_generator)
         
     def save_score(self):
+        precision = self.score[3]
+        recall = self.score[4]
+        
+        # F1 = 2 * (precision * recall) / (precision + recall)
+        f1 = 2 * (precision * recall) / (precision + recall + 1e-7)  # 1e-7 avoids division by zero
+        
         scores = {
             "loss": self.score[0],
             "accuracy": self.score[1],
             "auc": self.score[2],
-            "precision": self.score[3],
-            "recall": self.score[4]
+            "precision": precision,
+            "recall": recall,
+            "f1_score": f1
         }
-        save_json(
-            path=Path("scores.json"),
-            data=scores
-        )
+        save_json(path=Path("scores.json"), data=scores)
     def log_into_mlflow(self):
         mlflow.set_tracking_uri(self.config.mlflow_uri)
         mlflow.set_experiment("kidney-disease-classification")
@@ -72,7 +89,8 @@ class Evaluation:
                 "accuracy": self.score[1],
                 "auc": self.score[2],
                 "precision": self.score[3],
-                "recall": self.score[4]
+                "recall": self.score[4],
+                "f1_score": self.score[5]
             })
             
             # Log the actual Model (Optional but highly recommended)
