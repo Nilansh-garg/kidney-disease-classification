@@ -75,23 +75,26 @@ class Evaluation:
             "f1_score": f1
         }
         save_json(path=Path("scores.json"), data=scores)
-    def log_into_mlflow(self):
-        mlflow.set_tracking_uri(self.config.mlflow_uri)
-        mlflow.set_experiment("kidney-disease-classification")
-        
-        with mlflow.start_run(run_name="evaluation"):
-            # Log Hyperparameters
-            mlflow.log_params(self.config.all_params)
+        def log_into_mlflow(self):
+            precision = self.score[3]
+            recall = self.score[4]
+            f1 = 2 * (precision * recall) / (precision + recall + 1e-7)
+
+            mlflow.set_tracking_uri(self.config.mlflow_uri)
+            mlflow.set_experiment("kidney-disease-classification")
             
-            # Log Metrics
-            mlflow.log_metrics({
-                "loss": self.score[0],
-                "accuracy": self.score[1],
-                "auc": self.score[2],
-                "precision": self.score[3],
-                "recall": self.score[4],
-                "f1_score": self.score[5]
-            })
+            with mlflow.start_run(run_name="evaluation"):
+                mlflow.log_params(self.config.all_params)
+                mlflow.log_metrics({
+                    "loss": self.score[0],
+                    "accuracy": self.score[1],
+                    "auc": self.score[2],
+                    "precision": self.score[3],
+                    "recall": self.score[4],
+                    "f1_score": f1          # ADD THIS
+                })
+                if self.model:
+                    mlflow.keras.log_model(self.model, "model", registered_model_name="KidneyDiseaseModel")
             
             # Log the actual Model (Optional but highly recommended)
             # This allows you to deploy the model directly from DagsHub/MLflow later
