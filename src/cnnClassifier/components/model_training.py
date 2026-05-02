@@ -5,7 +5,6 @@ import tensorflow as tf
 from cnnClassifier.entity.config_entity import TrainingConfig
 from pathlib import Path
 
-
 class Training:
     def __init__(self, config: TrainingConfig):
         self.config = config

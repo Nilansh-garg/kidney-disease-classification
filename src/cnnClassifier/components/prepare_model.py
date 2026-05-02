@@ -45,8 +45,8 @@ class PrepareBaseModel:
         )
         
         full_model.compile(
-            optimizer = tf.keras.optimizers.Adam(learning_rate = learning_rate),
-            loss = tf.keras.losses.BinaryCrossentropy(),
+            optimizer=tf.keras.optimizers.Adam(learning_rate=learning_rate),
+            loss=tf.keras.losses.BinaryCrossentropy(),
             metrics = ["accuracy"]
         )
         
@@ -57,8 +57,8 @@ class PrepareBaseModel:
         self.full_model = self._prepare_full_model(
         model = self.model,
         classes= self.config.params_classes,
-        freeze_all = True,
-        freeze_till = None,
+        freeze_all = False,
+        freeze_till = 4,
         learning_rate = self.config.param_learning_rate
         )
         
@@ -68,4 +68,5 @@ class PrepareBaseModel:
     
     def save_model(path:Path, model: tf.keras.Model):
         model.save(path)
+    
     
