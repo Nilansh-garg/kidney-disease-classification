@@ -35,12 +35,13 @@ class PrepareBaseModel:
                  model.trainable = False
                  
         flatten_in = tf.keras.layers.Flatten()(model.output)
-        x = tf.keras.layers.Dropout(0.5)(flatten_in)
-        prediction = tf.keras.layers.Dense(units=1, activation="sigmoid")(x)
+        x = tf.keras.layers.Dense(256, activation="relu")(flatten_in)
+        x = tf.keras.layers.Dropout(0.5)(x)
+        output = tf.keras.layers.Dense(units=1, activation="sigmoid")(x)
         
         full_model = tf.keras.models.Model(
             inputs = model.input,
-            outputs = prediction
+            outputs = output
         )
         
         full_model.compile(
