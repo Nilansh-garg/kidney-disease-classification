@@ -20,12 +20,13 @@ class Evaluation:
         
         datagenrator_kwargs = dict(
             rescale=1./255,
-            validation_split=0.30
+            validation_split=0.20
         )
         dataflow_kwargs = dict(
             target_size=(self.config.params_image_size[:-1]),
             batch_size=self.config.params_batch_size,
-            interpolation="bilinear"
+            interpolation="bilinear",
+            class_mode="binary"
         )
         
         valid_datagenerator = tf.keras.preprocessing.image.ImageDataGenerator(**datagenrator_kwargs)
@@ -43,12 +44,15 @@ class Evaluation:
     def evaluation(self):
         self.model = self.load_model(self.config.path_of_model)
         self._valid_generator()
-        self.score = model.evaluate(self.valid_generator)
+        self.score = self.model.evaluate(self.valid_generator)
         
     def save_score(self):
         scores = {
             "loss": self.score[0],
-            "accuracy": self.score[1]
+            "accuracy": self.score[1],
+            "auc": self.score[2],
+            "precision": self.score[3],
+            "recall": self.score[4]
         }
         save_json(
             path=Path("scores.json"),
@@ -65,7 +69,10 @@ class Evaluation:
             # Log Metrics
             mlflow.log_metrics({
                 "loss": self.score[0],
-                "accuracy": self.score[1]
+                "accuracy": self.score[1],
+                "auc": self.score[2],
+                "precision": self.score[3],
+                "recall": self.score[4]
             })
             
             # Log the actual Model (Optional but highly recommended)

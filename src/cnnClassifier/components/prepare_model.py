@@ -35,10 +35,8 @@ class PrepareBaseModel:
                  model.trainable = False
                  
         flatten_in = tf.keras.layers.Flatten()(model.output)
-        prediction = tf.keras.layers.Dense(
-            units = classes,
-            activation = "softmax"
-        )(flatten_in)
+        x = tf.keras.layers.Dropout(0.5)(flatten_in)
+        prediction = tf.keras.layers.Dense(units=1, activation="sigmoid")(x)
         
         full_model = tf.keras.models.Model(
             inputs = model.input,
@@ -46,8 +44,8 @@ class PrepareBaseModel:
         )
         
         full_model.compile(
-            optimizer = tf.keras.optimizers.SGD(learning_rate = learning_rate),
-            loss = tf.keras.losses.CategoricalCrossentropy(),
+            optimizer = tf.keras.optimizers.Adam(learning_rate = learning_rate),
+            loss = tf.keras.losses.BinaryCrossentropy(),
             metrics = ["accuracy"]
         )
         

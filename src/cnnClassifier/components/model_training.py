@@ -14,7 +14,7 @@ class Training:
         self.model = tf.keras.models.load_model(self.config.updated_base_model_path)
         self.model.compile(
         optimizer=tf.keras.optimizers.Adam(learning_rate=self.config.params_learning_rate),
-        loss=tf.keras.losses.CategoricalCrossentropy(),
+        loss=tf.keras.losses.BinaryCrossentropy(),
         metrics=["accuracy"]
     )
     def train_valid_generator(self):
@@ -22,7 +22,7 @@ class Training:
         dataflow_kwargs = dict(
             target_size = self.config.params_image_size[:-1],
             batch_size = self.config.params_batch_size,
-            class_mode = "categorical",
+            class_mode = "binary",
         )
         valid_datagen = tf.keras.preprocessing.image.ImageDataGenerator(**datagen_kwargs)
         self.valid_generator = valid_datagen.flow_from_directory(

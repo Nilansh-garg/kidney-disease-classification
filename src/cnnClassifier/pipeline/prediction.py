@@ -1,3 +1,5 @@
+from unittest import result
+
 import numpy as np
 from tensorflow.keras.models import load_model
 from tensorflow.keras.preprocessing import image
@@ -17,15 +19,16 @@ class predict_pipeline:
         test_image = np.expand_dims(test_image,axis = 0)
         raw_prediction = model.predict(test_image)
         print(raw_prediction)
-        result = np.argmax(raw_prediction,axis = 1)
+        result = (raw_prediction[0][0] >= 0.5).astype(int) 
         print(result)
         
         # Get confidence score (probability of predicted class)
-        confidence = float(np.max(raw_prediction))
+        prob = float(raw_prediction[0][0])
+        confidence = prob if result == 1 else 1 - prob
         
-        if result[0] == 1:
-            prediction = "Normal"
+        if result == 1:
+            prediction = "Tumor" # 1 is actually Tumor[cite: 1]
             return [{"class": prediction, "confidence": confidence}]
         else:
-            prediction = "Tumor"
+            prediction = "Normal" # 0 is actually Normal[cite: 1]
             return [{"class": prediction, "confidence": confidence}]
