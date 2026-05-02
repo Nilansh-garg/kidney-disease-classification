@@ -78,6 +78,8 @@ def not_found(error):
 def internal_error(error):
     return jsonify({"status": "error", "message": "Internal server error"}), 500
 
+clApp = ClientApp() 
+
 if __name__ == "__main__":
     clApp = ClientApp()
     # For production, set debug=False
