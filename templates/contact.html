@@ -1,230 +1,245 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Contact | KidneyHealth AI</title>
-    <link rel="stylesheet" href="static/css/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact &mdash; BrainScan AI</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: #f5f3ef;
+    color: #1a1a1a;
+    min-height: 100vh;
+  }
+
+  nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.2rem 3rem;
+    background: #fff;
+    border-bottom: 1px solid #e5e2db;
+  }
+
+  .logo {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.3rem;
+    color: #1a1a1a;
+    text-decoration: none;
+  }
+
+  nav ul {
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+  }
+
+  nav ul a {
+    text-decoration: none;
+    color: #555;
+    font-size: 0.9rem;
+    transition: color 0.2s;
+  }
+
+  nav ul a:hover { color: #1a1a1a; }
+
+  .page {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: calc(100vh - 61px);
+  }
+
+  .left-col {
+    background: #fff;
+    padding: 4rem 3rem;
+    border-right: 1px solid #e5e2db;
+  }
+
+  .left-col h2 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 2.4rem;
+    font-weight: 400;
+    margin-bottom: 1rem;
+    line-height: 1.15;
+  }
+
+  .left-col p {
+    font-size: 0.95rem;
+    color: #777;
+    line-height: 1.7;
+    font-weight: 300;
+    max-width: 340px;
+    margin-bottom: 2.5rem;
+  }
+
+  .contact-item {
+    margin-bottom: 1.5rem;
+  }
+
+  .contact-item-label {
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #bbb;
+    margin-bottom: 0.3rem;
+  }
+
+  .contact-item-value {
+    font-size: 0.95rem;
+    color: #444;
+  }
+
+  .right-col {
+    padding: 4rem 3rem;
+  }
+
+  .form-label {
+    display: block;
+    font-size: 0.8rem;
+    color: #888;
+    margin-bottom: 0.4rem;
+    letter-spacing: 0.03em;
+  }
+
+  .form-group {
+    margin-bottom: 1.4rem;
+  }
+
+  input[type="text"],
+  input[type="email"],
+  textarea {
+    width: 100%;
+    padding: 0.7rem 0.9rem;
+    border: 1px solid #ddd;
+    border-radius: 2px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem;
+    color: #1a1a1a;
+    background: #fff;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+
+  input[type="text"]:focus,
+  input[type="email"]:focus,
+  textarea:focus {
+    border-color: #888;
+  }
+
+  textarea {
+    resize: vertical;
+    min-height: 130px;
+    line-height: 1.6;
+  }
+
+  .submit-btn {
+    background: #1a1a1a;
+    color: #fff;
+    border: none;
+    padding: 0.8rem 2rem;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem;
+    cursor: pointer;
+    border-radius: 2px;
+    letter-spacing: 0.02em;
+    transition: background 0.2s;
+  }
+
+  .submit-btn:hover { background: #333; }
+
+  .success-msg {
+    display: none;
+    margin-top: 1rem;
+    padding: 0.8rem 1rem;
+    background: #f1f6f1;
+    border: 1px solid #c8e0c8;
+    border-radius: 2px;
+    font-size: 0.85rem;
+    color: #3a7a3a;
+  }
+</style>
 </head>
 <body>
 
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="container">
-            <a href="/" class="nav-brand">
-                <i class="fas fa-kidneys"></i>
-                <span>Kidney<em>Health</em> AI</span>
-            </a>
-            <ul class="nav-menu">
-                <li><a href="/">Home</a></li>
-                <li><a href="/classify">Classify</a></li>
-                <li><a href="/about">About</a></li>
-                <li><a href="/contact" class="active">Contact</a></li>
-            </ul>
-            <div class="hamburger">
-                <span></span><span></span><span></span>
-            </div>
-        </div>
-    </nav>
+<nav>
+  <a href="/" class="logo">BrainScan AI</a>
+  <ul>
+    <li><a href="/">Home</a></li>
+    <li><a href="/classify">Classify</a></li>
+    <li><a href="/about">About</a></li>
+    <li><a href="/contact">Contact</a></li>
+  </ul>
+</nav>
 
-    <!-- Contact Hero -->
-    <section class="contact-hero">
-        <div class="container">
-            <span class="section-label" style="color:var(--accent);display:block;margin-bottom:1rem;">We're Here to Help</span>
-            <h1>Get In Touch</h1>
-            <p>Have questions about our system, the technology, or collaboration opportunities? We'd love to hear from you.</p>
-        </div>
-    </section>
+<div class="page">
+  <div class="left-col">
+    <h2>Get in<br>touch</h2>
+    <p>Have questions about the model, the dataset, or want to collaborate? Reach out.</p>
 
-    <!-- Contact Section -->
-    <section class="contact-section">
-        <div class="container">
-            <div class="contact-grid">
+    <div class="contact-item">
+      <div class="contact-item-label">Email</div>
+      <div class="contact-item-value">hello@brainscan.ai</div>
+    </div>
+    <div class="contact-item">
+      <div class="contact-item-label">GitHub</div>
+      <div class="contact-item-value">github.com/brainscan-ai</div>
+    </div>
+    <div class="contact-item">
+      <div class="contact-item-label">Response time</div>
+      <div class="contact-item-value">Usually within 48 hours</div>
+    </div>
+  </div>
 
-                <!-- Contact Form -->
-                <div class="contact-form-wrapper">
-                    <span class="section-label">Send a Message</span>
-                    <h2>We'll Respond Promptly</h2>
-                    <form class="contact-form" id="contactForm">
-                        <div class="form-group">
-                            <label for="name">Full Name</label>
-                            <input type="text" id="name" name="name" placeholder="Dr. Rajesh Sharma" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Email Address</label>
-                            <input type="email" id="email" name="email" placeholder="you@hospital.com" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="subject">Subject</label>
-                            <input type="text" id="subject" name="subject" placeholder="Clinical integration inquiry..." required>
-                        </div>
-                        <div class="form-group">
-                            <label for="message">Message</label>
-                            <textarea id="message" name="message" rows="5" placeholder="Tell us about your use case, question, or feedback..." required></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-primary" style="width:100%;">
-                            <i class="fas fa-paper-plane"></i> Send Message
-                        </button>
-                    </form>
-                </div>
+  <div class="right-col">
+    <div class="form-group">
+      <label class="form-label" for="name">Name</label>
+      <input type="text" id="name" placeholder="Your name">
+    </div>
+    <div class="form-group">
+      <label class="form-label" for="email">Email</label>
+      <input type="email" id="email" placeholder="you@example.com">
+    </div>
+    <div class="form-group">
+      <label class="form-label" for="subject">Subject</label>
+      <input type="text" id="subject" placeholder="e.g. Model accuracy question">
+    </div>
+    <div class="form-group">
+      <label class="form-label" for="message">Message</label>
+      <textarea id="message" placeholder="Write your message here..."></textarea>
+    </div>
+    <button class="submit-btn" id="submitBtn">Send Message</button>
+    <div class="success-msg" id="successMsg">Message sent. We'll get back to you soon.</div>
+  </div>
+</div>
 
-                <!-- Contact Info -->
-                <div class="contact-info-wrapper">
-                    <span class="section-label">Contact Details</span>
-                    <h2>Reach Us Directly</h2>
-                    <div class="contact-info-cards">
-                        <div class="contact-info-card">
-                            <div class="contact-info-icon"><i class="fas fa-envelope"></i></div>
-                            <div class="contact-info-text">
-                                <h4>Email</h4>
-                                <p>info@kidneyhealthai.com</p>
-                                <p>support@kidneyhealthai.com</p>
-                            </div>
-                        </div>
-                        <div class="contact-info-card">
-                            <div class="contact-info-icon"><i class="fas fa-phone"></i></div>
-                            <div class="contact-info-text">
-                                <h4>Phone</h4>
-                                <p>+91 123 456 7890</p>
-                                <p>Mon–Fri, 9 AM – 6 PM IST</p>
-                            </div>
-                        </div>
-                        <div class="contact-info-card">
-                            <div class="contact-info-icon"><i class="fas fa-map-marker-alt"></i></div>
-                            <div class="contact-info-text">
-                                <h4>Location</h4>
-                                <p>Bangalore, Karnataka</p>
-                                <p>India — 560001</p>
-                            </div>
-                        </div>
-                    </div>
+<script>
+  document.getElementById('submitBtn').addEventListener('click', function() {
+    const name = document.getElementById('name').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const message = document.getElementById('message').value.trim();
 
-                    <div class="social-links">
-                        <h4>Follow Our Work</h4>
-                        <div class="social-icons">
-                            <a href="#" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
-                            <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
-                            <a href="#" title="GitHub"><i class="fab fa-github"></i></a>
-                            <a href="#" title="YouTube"><i class="fab fa-youtube"></i></a>
-                        </div>
-                    </div>
+    if (!name || !email || !message) {
+      alert('Please fill in name, email, and message.');
+      return;
+    }
 
-                    <!-- Medical Disclaimer -->
-                    <div style="margin-top:2rem;padding:1.25rem;background:rgba(245,158,11,0.08);border:1px solid rgba(245,158,11,0.25);border-radius:var(--radius);border-left:4px solid var(--warning);">
-                        <div style="display:flex;gap:0.6rem;align-items:flex-start;">
-                            <i class="fas fa-exclamation-triangle" style="color:var(--warning);margin-top:2px;"></i>
-                            <div>
-                                <p style="font-weight:700;color:var(--dark);font-size:0.9rem;margin-bottom:0.25rem;">Medical Disclaimer</p>
-                                <p style="font-size:0.85rem;color:var(--text-light);line-height:1.6;">This tool is intended for research and educational assistance only. All clinical decisions must be made by a licensed and qualified medical professional.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+    this.textContent = 'Sending...';
+    this.disabled = true;
 
-            </div>
-        </div>
-    </section>
+    setTimeout(() => {
+      document.getElementById('successMsg').style.display = 'block';
+      this.textContent = 'Send Message';
+      this.disabled = false;
+      document.getElementById('name').value = '';
+      document.getElementById('email').value = '';
+      document.getElementById('subject').value = '';
+      document.getElementById('message').value = '';
+    }, 900);
+  });
+</script>
 
-    <!-- FAQ Section -->
-    <section class="faq-section">
-        <div class="container">
-            <span class="section-label" style="display:block;text-align:center;">FAQs</span>
-            <h2 class="section-title">Frequently Asked Questions</h2>
-            <p class="section-subtitle">Quick answers to the most common questions about KidneyHealth AI.</p>
-            <div class="faq-grid">
-                <div class="faq-item">
-                    <div class="faq-question">
-                        <h4>What types of kidney conditions can the system detect?</h4>
-                        <i class="fas fa-chevron-down"></i>
-                    </div>
-                    <div class="faq-answer">
-                        <p>The system classifies CT scan images into four categories: Normal (healthy kidney), Cyst (fluid-filled sac), Stone (mineral deposits), and Tumor (abnormal tissue growth). Each prediction comes with a confidence score.</p>
-                    </div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-question">
-                        <h4>How accurate is the AI model?</h4>
-                        <i class="fas fa-chevron-down"></i>
-                    </div>
-                    <div class="faq-answer">
-                        <p>Our VGG16-based model achieves over 95% validation accuracy on our curated dataset. Accuracy may vary on clinical images with varying contrast, resolution, or imaging protocols. Always validate results with a radiologist.</p>
-                    </div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-question">
-                        <h4>Is my CT scan data stored anywhere?</h4>
-                        <i class="fas fa-chevron-down"></i>
-                    </div>
-                    <div class="faq-answer">
-                        <p>No. Images are decoded server-side for inference and immediately discarded. We do not store, log, or share any uploaded image data. Processing is ephemeral and privacy-aligned.</p>
-                    </div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-question">
-                        <h4>Can I use this as a final medical diagnosis?</h4>
-                        <i class="fas fa-chevron-down"></i>
-                    </div>
-                    <div class="faq-answer">
-                        <p>No. This tool is designed as a research-grade assistive tool only. It should never replace the judgment of a qualified nephrologist, radiologist, or urologist. Always seek professional medical advice.</p>
-                    </div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-question">
-                        <h4>What image format should I upload?</h4>
-                        <i class="fas fa-chevron-down"></i>
-                    </div>
-                    <div class="faq-answer">
-                        <p>The system accepts JPG, JPEG, and PNG images. Axial-view CT scan images produce the best results. Images are automatically resized to 224×224 pixels for model inference. Max file size is 10MB.</p>
-                    </div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-question">
-                        <h4>How do I integrate this into our hospital system?</h4>
-                        <i class="fas fa-chevron-down"></i>
-                    </div>
-                    <div class="faq-answer">
-                        <p>KidneyHealth AI exposes a REST API (<code>POST /predict</code>) that accepts base64-encoded images and returns JSON predictions. Contact us at info@kidneyhealthai.com to discuss integration, API documentation, and institutional licensing.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <div class="footer-brand">
-                        <i class="fas fa-kidneys"></i> KidneyHealth AI
-                    </div>
-                    <p>Advanced kidney disease detection powered by deep learning.</p>
-                </div>
-                <div class="footer-section">
-                    <h4>Quick Links</h4>
-                    <ul>
-                        <li><a href="/">Home</a></li>
-                        <li><a href="/classify">Classify</a></li>
-                        <li><a href="/about">About</a></li>
-                        <li><a href="/contact">Contact</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>Contact</h4>
-                    <div class="contact-line"><i class="fas fa-envelope"></i> info@kidneyhealthai.com</div>
-                    <div class="contact-line"><i class="fas fa-phone"></i> +91 123 456 7890</div>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2024 KidneyHealth AI. All rights reserved. | Developed by Nilansh Garg</p>
-                <p>Supervised by Krish Naik</p>
-            </div>
-        </div>
-    </footer>
-
-    <script src="static/js/main.js"></script>
-    <script src="static/js/contact.js"></script>
 </body>
 </html>

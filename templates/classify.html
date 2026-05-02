@@ -1,185 +1,411 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Classify | KidneyHealth AI</title>
-    <link rel="stylesheet" href="static/css/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Classify &mdash; BrainScan AI</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: #f5f3ef;
+    color: #1a1a1a;
+    min-height: 100vh;
+  }
+
+  nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.2rem 3rem;
+    background: #fff;
+    border-bottom: 1px solid #e5e2db;
+  }
+
+  .logo {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.3rem;
+    color: #1a1a1a;
+    text-decoration: none;
+  }
+
+  nav ul {
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+  }
+
+  nav ul a {
+    text-decoration: none;
+    color: #555;
+    font-size: 0.9rem;
+    font-weight: 400;
+    transition: color 0.2s;
+  }
+
+  nav ul a:hover { color: #1a1a1a; }
+
+  .page {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 3.5rem 2rem;
+  }
+
+  .page-header {
+    margin-bottom: 2.5rem;
+  }
+
+  .page-header h2 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 2.2rem;
+    font-weight: 400;
+    margin-bottom: 0.5rem;
+  }
+
+  .page-header p {
+    font-size: 0.95rem;
+    color: #777;
+    font-weight: 300;
+  }
+
+  .classify-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+
+  .panel {
+    background: #fff;
+    border: 1px solid #e5e2db;
+    border-radius: 4px;
+    padding: 1.8rem;
+  }
+
+  .panel-title {
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #999;
+    margin-bottom: 1.2rem;
+  }
+
+  .drop-zone {
+    border: 1.5px dashed #ccc;
+    border-radius: 4px;
+    height: 240px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: border-color 0.2s, background 0.2s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .drop-zone:hover {
+    border-color: #888;
+    background: #faf9f7;
+  }
+
+  .drop-zone.has-image {
+    border-style: solid;
+    border-color: #ccc;
+    padding: 0;
+  }
+
+  .drop-zone img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 3px;
+  }
+
+  .drop-icon {
+    width: 40px;
+    height: 40px;
+    border: 1px solid #ddd;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 0.8rem;
+    color: #bbb;
+    font-size: 1.2rem;
+  }
+
+  .drop-label {
+    font-size: 0.85rem;
+    color: #999;
+    text-align: center;
+    line-height: 1.5;
+  }
+
+  .drop-label span {
+    display: block;
+    font-size: 0.75rem;
+    margin-top: 0.3rem;
+    color: #bbb;
+  }
+
+  input[type="file"] {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    cursor: pointer;
+  }
+
+  .classify-btn {
+    width: 100%;
+    margin-top: 1rem;
+    padding: 0.75rem;
+    background: #1a1a1a;
+    color: #fff;
+    border: none;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem;
+    cursor: pointer;
+    border-radius: 2px;
+    transition: background 0.2s;
+    letter-spacing: 0.02em;
+  }
+
+  .classify-btn:hover { background: #333; }
+  .classify-btn:disabled { background: #ccc; cursor: not-allowed; }
+
+  .result-panel {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .result-placeholder {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 240px;
+    color: #ccc;
+    font-size: 0.85rem;
+    text-align: center;
+    line-height: 1.6;
+  }
+
+  .result-content { display: none; }
+
+  .result-badge {
+    display: inline-block;
+    padding: 0.4rem 1.2rem;
+    border-radius: 2px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    margin-bottom: 1rem;
+  }
+
+  .badge-tumor {
+    background: #fdf1f1;
+    color: #b33a3a;
+    border: 1px solid #f0c8c8;
+  }
+
+  .badge-normal {
+    background: #f1f6f1;
+    color: #3a7a3a;
+    border: 1px solid #c8e0c8;
+  }
+
+  .result-class {
+    font-family: 'DM Serif Display', serif;
+    font-size: 2.4rem;
+    font-weight: 400;
+    margin-bottom: 0.3rem;
+  }
+
+  .result-confidence-label {
+    font-size: 0.8rem;
+    color: #999;
+    margin-bottom: 0.6rem;
+  }
+
+  .confidence-bar-wrap {
+    width: 100%;
+    height: 4px;
+    background: #eee;
+    border-radius: 2px;
+    overflow: hidden;
+    margin-bottom: 0.4rem;
+  }
+
+  .confidence-bar {
+    height: 100%;
+    background: #2c3a28;
+    border-radius: 2px;
+    transition: width 0.6s ease;
+  }
+
+  .confidence-pct {
+    font-size: 0.8rem;
+    color: #777;
+  }
+
+  .note {
+    margin-top: 1.2rem;
+    padding: 0.8rem 1rem;
+    background: #faf9f7;
+    border-left: 2px solid #d4cec4;
+    font-size: 0.8rem;
+    color: #888;
+    line-height: 1.5;
+  }
+
+  .spinner {
+    display: none;
+    width: 24px;
+    height: 24px;
+    border: 2px solid #eee;
+    border-top-color: #1a1a1a;
+    border-radius: 50%;
+    animation: spin 0.7s linear infinite;
+    margin: 0 auto 0.5rem;
+  }
+
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  .loading-text {
+    font-size: 0.82rem;
+    color: #aaa;
+  }
+</style>
 </head>
 <body>
 
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="container">
-            <a href="/" class="nav-brand">
-                <i class="fas fa-kidneys"></i>
-                <span>Kidney<em>Health</em> AI</span>
-            </a>
-            <ul class="nav-menu">
-                <li><a href="/">Home</a></li>
-                <li><a href="/classify" class="active">Classify</a></li>
-                <li><a href="/about">About</a></li>
-                <li><a href="/contact">Contact</a></li>
-            </ul>
-            <div class="hamburger">
-                <span></span><span></span><span></span>
-            </div>
+<nav>
+  <a href="/" class="logo">BrainScan AI</a>
+  <ul>
+    <li><a href="/">Home</a></li>
+    <li><a href="/classify">Classify</a></li>
+    <li><a href="/about">About</a></li>
+    <li><a href="/contact">Contact</a></li>
+  </ul>
+</nav>
+
+<div class="page">
+  <div class="page-header">
+    <h2>MRI Classification</h2>
+    <p>Upload a brain MRI scan to receive an instant tumor / normal prediction.</p>
+  </div>
+
+  <div class="classify-grid">
+    <div class="panel">
+      <p class="panel-title">Upload Image</p>
+      <div class="drop-zone" id="dropZone">
+        <input type="file" id="fileInput" accept="image/*">
+        <div class="drop-icon">+</div>
+        <div class="drop-label">
+          Drop MRI scan here
+          <span>JPG, PNG &mdash; max 10MB</span>
         </div>
-    </nav>
-
-    <!-- Classification Section -->
-    <section class="classification-section">
-        <div class="container">
-            <div class="page-header">
-                <span class="section-label">AI Diagnosis Tool</span>
-                <h1 class="page-title">Kidney CT Scan Classification</h1>
-                <p class="page-subtitle">Upload a kidney CT scan image for instant AI-powered analysis — Cyst, Stone, Tumor, or Normal</p>
-            </div>
-
-            <div class="classification-container">
-
-                <!-- Upload Section -->
-                <div class="upload-section">
-                    <div class="upload-card">
-                        <div class="image-preview" id="imagePreview">
-                            <video autoplay id="video" style="display:none;"></video>
-                            <img src="" id="photo" alt="Preview" style="display:none;">
-                            <canvas style="display:none;" id="canvas"></canvas>
-                            <div class="placeholder" id="placeholder">
-                                <i class="fas fa-cloud-upload-alt"></i>
-                                <p>Drop CT scan here or click to upload</p>
-                                <span>Supports: JPG, PNG, JPEG · Max 10MB</span>
-                            </div>
-                        </div>
-
-                        <div class="upload-actions">
-                            <button type="button" class="btn btn-outline" id="uploadBtn">
-                                <i class="fas fa-folder-open"></i> Choose File
-                            </button>
-                            <button type="button" class="btn btn-primary" id="predictBtn" disabled>
-                                <i class="fas fa-brain"></i> Analyze Scan
-                            </button>
-                            <input type="file" id="fileInput" accept="image/*" style="display:none;">
-                            <input type="hidden" id="url" value="/predict"/>
-                        </div>
-
-                        <div class="progress-container" id="progressContainer" style="display:none;">
-                            <div class="progress-bar">
-                                <div class="progress-fill" id="progressFill"></div>
-                            </div>
-                            <p class="progress-text"><i class="fas fa-spinner fa-spin"></i> Processing CT scan through neural network...</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Results Section -->
-                <div class="results-section">
-                    <div class="results-card">
-                        <h3 class="results-title">
-                            <i class="fas fa-chart-pie"></i> Analysis Results
-                        </h3>
-
-                        <div class="results-placeholder" id="resultsPlaceholder">
-                            <i class="fas fa-microscope"></i>
-                            <p>Upload a kidney CT scan image to see the AI diagnosis here</p>
-                        </div>
-
-                        <div class="results-content" id="resultsContent" style="display:none;">
-                            <div class="result-main" id="resultMain"></div>
-                            <div class="result-details" id="resultDetails"></div>
-                            <div class="result-image" id="resultImage"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Info Cards -->
-            <div class="info-cards">
-                <div class="info-card">
-                    <i class="fas fa-lightbulb"></i>
-                    <h4>Tips for Best Results</h4>
-                    <ul>
-                        <li>Use axial CT scan images</li>
-                        <li>Ensure the kidney is clearly visible</li>
-                        <li>Use high resolution images (min 224×224px)</li>
-                        <li>Avoid blurry or overexposed scans</li>
-                        <li>Grayscale or contrast-enhanced images work best</li>
-                    </ul>
-                </div>
-                <div class="info-card">
-                    <i class="fas fa-shield-alt"></i>
-                    <h4>Privacy & Security</h4>
-                    <ul>
-                        <li>Images processed locally on-server</li>
-                        <li>No data stored permanently</li>
-                        <li>Encrypted transmission (HTTPS)</li>
-                        <li>HIPAA-aligned data handling</li>
-                        <li>No third-party data sharing</li>
-                    </ul>
-                </div>
-                <div class="info-card">
-                    <i class="fas fa-info-circle"></i>
-                    <h4>Classification Classes</h4>
-                    <ul>
-                        <li>Normal — healthy kidney</li>
-                        <li>Cyst — fluid-filled sac</li>
-                        <li>Stone — mineral deposits</li>
-                        <li>Tumor — abnormal growth</li>
-                    </ul>
-                    <p style="margin-top:0.75rem;font-size:0.8rem;color:var(--text-light);">
-                        <i class="fas fa-exclamation-circle" style="color:var(--warning);"></i>
-                        Always consult a qualified nephrologist or radiologist before making any medical decisions.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Loading Overlay -->
-    <div id="loading" style="display:none;">
-        <div class="loader-wrapper">
-            <div class="loader"></div>
-            <p>Analyzing CT scan...</p>
-        </div>
+      </div>
+      <button class="classify-btn" id="classifyBtn" disabled>Run Classification</button>
     </div>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <div class="footer-brand">
-                        <i class="fas fa-kidneys"></i>
-                        KidneyHealth AI
-                    </div>
-                    <p>Advanced kidney disease detection powered by deep learning and computer vision.</p>
-                </div>
-                <div class="footer-section">
-                    <h4>Quick Links</h4>
-                    <ul>
-                        <li><a href="/">Home</a></li>
-                        <li><a href="/classify">Classify</a></li>
-                        <li><a href="/about">About</a></li>
-                        <li><a href="/contact">Contact</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>Contact</h4>
-                    <div class="contact-line"><i class="fas fa-envelope"></i> info@kidneyhealthai.com</div>
-                    <div class="contact-line"><i class="fas fa-phone"></i> +91 123 456 7890</div>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2024 KidneyHealth AI. All rights reserved. | Developed by Nilansh Garg</p>
-                <p>Supervised by Krish Naik</p>
-            </div>
-        </div>
-    </footer>
+    <div class="panel result-panel">
+      <p class="panel-title">Result</p>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="static/js/classify.js"></script>
-    <script src="static/js/main.js"></script>
+      <div class="result-placeholder" id="resultPlaceholder">
+        <div class="spinner" id="spinner"></div>
+        <span id="placeholderText">Upload a scan and run classification to see results here.</span>
+      </div>
+
+      <div class="result-content" id="resultContent">
+        <span class="result-badge" id="resultBadge"></span>
+        <div class="result-class" id="resultClass"></div>
+        <div class="result-confidence-label">Confidence</div>
+        <div class="confidence-bar-wrap">
+          <div class="confidence-bar" id="confBar" style="width: 0%"></div>
+        </div>
+        <div class="confidence-pct" id="confPct"></div>
+        <div class="note">This tool is for research and educational use only. Not a substitute for professional medical diagnosis.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const fileInput = document.getElementById('fileInput');
+  const dropZone = document.getElementById('dropZone');
+  const classifyBtn = document.getElementById('classifyBtn');
+  const resultPlaceholder = document.getElementById('resultPlaceholder');
+  const resultContent = document.getElementById('resultContent');
+  const spinner = document.getElementById('spinner');
+  const placeholderText = document.getElementById('placeholderText');
+
+  let base64Image = null;
+
+  fileInput.addEventListener('change', function() {
+    const file = this.files[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = function(e) {
+      const dataUrl = e.target.result;
+      base64Image = dataUrl.split(',')[1];
+
+      const img = document.createElement('img');
+      img.src = dataUrl;
+      dropZone.innerHTML = '';
+      dropZone.appendChild(img);
+      dropZone.classList.add('has-image');
+
+      classifyBtn.disabled = false;
+    };
+    reader.readAsDataURL(file);
+  });
+
+  classifyBtn.addEventListener('click', function() {
+    if (!base64Image) return;
+
+    classifyBtn.disabled = true;
+    resultContent.style.display = 'none';
+    resultPlaceholder.style.display = 'flex';
+    spinner.style.display = 'block';
+    placeholderText.textContent = 'Analysing scan...';
+
+    fetch('/predict', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ image: base64Image })
+    })
+    .then(r => r.json())
+    .then(data => {
+      spinner.style.display = 'none';
+      resultPlaceholder.style.display = 'none';
+      resultContent.style.display = 'block';
+
+      const cls = data[0].class;
+      const conf = (data[0].confidence * 100).toFixed(1);
+
+      const badge = document.getElementById('resultBadge');
+      badge.textContent = cls;
+      badge.className = 'result-badge ' + (cls === 'Tumor' ? 'badge-tumor' : 'badge-normal');
+
+      document.getElementById('resultClass').textContent = cls;
+      document.getElementById('confPct').textContent = conf + '%';
+
+      setTimeout(() => {
+        document.getElementById('confBar').style.width = conf + '%';
+      }, 50);
+    })
+    .catch(() => {
+      spinner.style.display = 'none';
+      placeholderText.textContent = 'Something went wrong. Please try again.';
+      classifyBtn.disabled = false;
+    });
+  });
+</script>
+
 </body>
 </html>
